@@ -1,0 +1,29 @@
+{
+  "siteName": {
+    "value": "SAMLMVCApp"
+  },
+  "hostingPlanName": {
+    "value": "SAMLWebApp"
+  },
+  "siteLocation": {
+    "value": "East US 2"
+  },
+  "sku": {
+    "value": "Free"
+  },
+  "workerSize": {
+    "value": "0"
+  },
+  "siteMode": {
+    "value": "Limited"
+  },
+  "computeMode": {
+    "value": "0"
+  },
+  "subscriptionId": {
+    "value": "5d934132-e49f-4042-ae81-80cd5814377f"
+  },
+  "resourceGroup": {
+    "value": "SAMLWebApp"
+  }
+}

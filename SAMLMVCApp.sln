@@ -5,6 +5,19 @@ VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SAMLMVCApp", "SAMLMVCApp\SAMLMVCApp.csproj", "{7D0A218E-B16D-439B-9A9C-CF6AE7114238}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PublishScripts", "PublishScripts", "{90CE24EB-58EF-4698-B86A-A4F1BF9663F6}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Scripts", "Scripts", "{3F528531-A6C8-407E-9A28-E56D77F29F02}"
+	ProjectSection(SolutionItems) = preProject
+		PublishScripts\Scripts\Deploy-AzureResourceGroup.ps1 = PublishScripts\Scripts\Deploy-AzureResourceGroup.ps1
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Templates", "Templates", "{04BF7724-8EEF-489F-BC41-4E122B222BCB}"
+	ProjectSection(SolutionItems) = preProject
+		PublishScripts\Templates\SAMLMVCApp.json = PublishScripts\Templates\SAMLMVCApp.json
+		PublishScripts\Templates\SAMLMVCApp.param.dev.json = PublishScripts\Templates\SAMLMVCApp.param.dev.json
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +31,9 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{3F528531-A6C8-407E-9A28-E56D77F29F02} = {90CE24EB-58EF-4698-B86A-A4F1BF9663F6}
+		{04BF7724-8EEF-489F-BC41-4E122B222BCB} = {90CE24EB-58EF-4698-B86A-A4F1BF9663F6}
 	EndGlobalSection
 EndGlobal
