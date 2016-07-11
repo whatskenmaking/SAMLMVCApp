@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<TrustFrameworkPolicy 
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+  xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+  xmlns="http://schemas.microsoft.com/online/cpim/schemas/2013/06" 
+  PolicySchemaVersion="0.3.0.0" 
+  TenantId="saob2c.onmicrosoft.com" 
+  PolicyId="signin_nomfa" 
+  PublicPolicyUri="http://lamnahealth.onmicrosoft.com">
+
+  <BasePolicy>
+    <TenantId>saob2c.onmicrosoft.com</TenantId>
+    <PolicyId>B2C_1A_base_extensions</PolicyId>
+  </BasePolicy>
+  
+  <ClaimsProviders>
+	<ClaimsProvider>
+      <DisplayName>SAML Token Issuer</DisplayName>
+      <TechnicalProfiles>
+        <TechnicalProfile Id="Saml2AssertionIssuer">
+          <DisplayName>Token Issuer</DisplayName>
+          <Protocol Name="None" />
+          <OutputTokenFormat>SAML2</OutputTokenFormat>
+          <CryptographicKeys>
+            <Key Id="issuer_secret" StorageReferenceId="Token1" />
+            <Key Id="SamlMessageSigning" StorageReferenceId="TestCertificate" />
+          </CryptographicKeys>
+          <InputClaims />
+          <OutputClaims />
+        </TechnicalProfile>
+      </TechnicalProfiles>
+    </ClaimsProvider>
+  </ClaimsProviders>
+	<UserJourneys>
+		<UserJourney Id="SAMLSignIn">
+		  <PreserveOriginalAssertion>false</PreserveOriginalAssertion>
+		  <OrchestrationSteps> 
+			<OrchestrationStep Order="1" Type="SendClaims" CpimIssuerTechnicalProfileReferenceId="Saml2AssertionIssuer" />
+		  </OrchestrationSteps>
+		</UserJourney>
+	</UserJourneys>
+  <RelyingParty>
+    <DefaultUserJourney ReferenceId="SAMLSignIn" />
+     <UserJourneyBehaviors>
+      <SingleSignOn Scope="Application" />
+      <SessionExpiryType>Rolling</SessionExpiryType>
+      <SessionExpiryInSeconds>86400</SessionExpiryInSeconds>
+    </UserJourneyBehaviors>
+    <TechnicalProfile Id="PolicyProfile">
+      <DisplayName>PolicyProfile</DisplayName>
+      <Protocol Name="SAML2" />
+      <OutputClaims />
+	  <Metadata>
+        <Item Key="client_id">https://localhost:44337</Item>
+        <Item Key="PartnerEntity">https://saob2csaml.azurewebsites.net/AuthServices/</Item>
+      </Metadata>
+      <SubjectNamingInfo ClaimType="sub" />
+    </TechnicalProfile>
+  </RelyingParty>
+</TrustFrameworkPolicy>
+
+

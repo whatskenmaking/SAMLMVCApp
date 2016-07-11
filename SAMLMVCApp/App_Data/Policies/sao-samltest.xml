@@ -1,0 +1,47 @@
+<TrustFrameworkPolicy xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.microsoft.com/online/cpim/schemas/2013/06" PolicySchemaVersion="0.3.0.0" TenantId="saob2c.onmicrosoft.com" PolicyId="B2C_1A_SAMLSignIn2" PublicPolicyUri="http://goodyearb2cdemo.onmicrosoft.com/" DeploymentMode="Development" UserJourneyRecorderEndpoint="https://www.identityblog.com/wp-content/plugins/cpimauth/journeyrecorder/endpoint.php?stream=9214adb8-7628-4711-bef4-a29e7230519a">
+  <BasePolicy>
+    <TenantId>saob2c.onmicrosoft.com</TenantId>
+    <PolicyId>B2C_1A_base_extensions</PolicyId>
+  </BasePolicy>
+  <ClaimsProviders>  
+    <ClaimsProvider>
+      <DisplayName>SAML Token Issuer</DisplayName>
+      <TechnicalProfiles>
+        <TechnicalProfile Id="Saml2AssertionIssuer">
+          <DisplayName>Token Issuer</DisplayName>
+          <Protocol Name="SAML2" />
+          <OutputTokenFormat>SAML2</OutputTokenFormat>
+          <CryptographicKeys>
+            <Key Id="issuer_secret" StorageReferenceId="Token1" />
+            <Key Id="SamlMessageSigning" StorageReferenceId="TestCertificate" />
+          </CryptographicKeys>
+          <InputClaims />
+          <OutputClaims />
+        </TechnicalProfile>
+      </TechnicalProfiles>
+    </ClaimsProvider>
+  </ClaimsProviders>
+  <UserJourneys>
+    <UserJourney Id="B2CSignInTest">
+      <PreserveOriginalAssertion>false</PreserveOriginalAssertion>
+      <OrchestrationSteps> 
+        <OrchestrationStep Order="1" Type="SendClaims" CpimIssuerTechnicalProfileReferenceId="Saml2AssertionIssuer" />
+      </OrchestrationSteps>
+    </UserJourney>
+  </UserJourneys>
+  <RelyingParty>
+    <DefaultUserJourney ReferenceId="B2CSignInTest" />
+    <UserJourneyBehaviors>
+      <SessionExpiryType>Absolute</SessionExpiryType>
+      <SessionExpiryInSeconds>1200</SessionExpiryInSeconds>
+    </UserJourneyBehaviors>
+    <TechnicalProfile Id="SamlDefault-SR-LoA2">
+      <DisplayName>TheProfile</DisplayName>
+      <Protocol Name="SAML2" />
+      <Metadata>
+        <Item Key="client_id">https://localhost:44300</Item>
+        <Item Key="PartnerEntity">https://saob2csaml.azurewebsites.net/AuthServices/</Item>
+      </Metadata>
+    </TechnicalProfile>
+  </RelyingParty>
+</TrustFrameworkPolicy>
